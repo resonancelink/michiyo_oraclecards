@@ -119,6 +119,9 @@ main{flex:1; display:flex; flex-direction:column; align-items:center; width:100%
   background:#fff; border:1px solid rgba(201,168,106,.55); border-radius:999px;
   padding:11px 34px; transition:all .3s}
 #home:hover{background:linear-gradient(135deg,var(--rose),var(--lav)); color:#fff; border-color:transparent}
+.aboutlink{display:block; width:fit-content; margin:6px auto 0; font-size:13.5px; font-weight:500;
+  letter-spacing:.12em; color:var(--goldtext); text-decoration:none;
+  border-bottom:1px solid rgba(201,168,106,.6); padding-bottom:2px}
 footer{text-align:center; font-size:12.5px; line-height:1.9; color:#8E8194; padding:26px 24px 30px}
 @media (max-width:480px){
   #intro h1{font-size:28px}
@@ -148,6 +151,7 @@ footer{text-align:center; font-size:12.5px; line-height:1.9; color:#8E8194; padd
       <button data-deck="infinity">Infinity Oracle(44枚)</button>
     </div>
     <button class="cta" id="start" style="width:min(300px,82vw)">カードをシャッフルする</button>
+    <a class="aboutlink" href="about.html">✦ このカードの作者について</a>
   </section>
 
   <!-- テーブル -->
@@ -176,6 +180,7 @@ footer{text-align:center; font-size:12.5px; line-height:1.9; color:#8E8194; padd
       <button id="again">もう一度シャッフルする</button>
       <button id="share">✦ このカードをシェアする</button>
       <button id="home">ホームに戻る</button>
+      <a class="aboutlink" href="about.html">✦ このカードの作者について</a>
     </div>
   </section>
 </main>
