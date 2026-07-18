@@ -8,17 +8,17 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="今日の１枚">
+<meta name="apple-mobile-web-app-title" content="みちよオラクル">
 <link rel="apple-touch-icon" sizes="180x180" href="images/icons/icon-180.png">
 <link rel="icon" type="image/png" sizes="192x192" href="images/icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32.png">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --rose:#D8A7B1; --lav:#C5B4E3; --peach:#F7CAC9; --gold:#C9A86A;
-  --bg:#FDF9F6; --ink:#5D4E60;
+  --bg:#FDF9F6; --ink:#5D4E60; --goldtext:#9C7434;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
@@ -40,11 +40,11 @@ main{flex:1; display:flex; flex-direction:column; align-items:center; width:100%
   -webkit-mask-image:radial-gradient(circle at 50% 50%, #000 45%, transparent 72%);
   mask-image:radial-gradient(circle at 50% 50%, #000 45%, transparent 72%);}
 #intro h1{font-size:34px; font-weight:600; letter-spacing:.18em; color:var(--ink)}
-#intro .sub{font-size:13px; letter-spacing:.3em; color:var(--gold)}
-#intro p.lead{font-size:15px; line-height:2; max-width:30em}
+#intro .sub{font-size:14.5px; font-weight:600; letter-spacing:.3em; color:var(--goldtext)}
+#intro p.lead{font-size:16px; font-weight:500; line-height:2; max-width:30em}
 .deckpick{display:flex; flex-direction:column; gap:12px; align-items:center}
 .deckpick button{
-  font-family:inherit; font-size:14px; color:var(--ink); width:min(300px, 82vw);
+  font-family:inherit; font-size:15px; font-weight:500; color:var(--ink); width:min(300px, 82vw);
   background:#fff; border:1px solid #E9DCE0; border-radius:999px; padding:12px 18px; cursor:pointer;
   transition:all .25s;
 }
@@ -58,7 +58,7 @@ main{flex:1; display:flex; flex-direction:column; align-items:center; width:100%
 .cta:hover{transform:translateY(-2px); box-shadow:0 10px 26px rgba(197,180,227,.45)}
 /* ---- テーブル ---- */
 #table-scene{padding:12px 0 0}
-#hint{font-size:14px; letter-spacing:.12em; text-align:center; padding:14px 20px 6px; line-height:1.9;
+#hint{font-size:15.5px; font-weight:500; letter-spacing:.12em; text-align:center; padding:14px 20px 6px; line-height:1.9;
   transition:opacity .6s}
 #table{position:relative; width:100%; flex:1; min-height:430px; cursor:pointer}
 .cardback{
@@ -85,12 +85,12 @@ main{flex:1; display:flex; flex-direction:column; align-items:center; width:100%
 #info{opacity:0; transform:translateY(14px); transition:opacity .9s, transform .9s; max-width:620px;
   text-align:center; padding:26px 8px 10px}
 #info.show{opacity:1; transform:none}
-#info .deckline{font-size:11px; letter-spacing:.22em; color:var(--gold)}
+#info .deckline{font-size:13px; font-weight:600; letter-spacing:.2em; color:var(--goldtext)}
 #info h2{font-size:27px; font-weight:600; letter-spacing:.12em; margin-top:8px}
-#info .en{font-size:12px; letter-spacing:.28em; color:#A08FA6; margin-top:4px; text-transform:uppercase}
-#info .mt{font-size:16px; margin-top:16px; color:var(--ink); letter-spacing:.06em}
+#info .en{font-size:12.5px; letter-spacing:.28em; color:#8E7B95; margin-top:4px; text-transform:uppercase}
+#info .mt{font-size:16.5px; font-weight:500; margin-top:16px; color:var(--ink); letter-spacing:.06em}
 .chips{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:16px}
-.chips span{font-size:12px; background:var(--peach); color:var(--ink);
+.chips span{font-size:13.5px; font-weight:500; background:var(--peach); color:var(--ink);
   border-radius:999px; padding:6px 13px; line-height:1.5}
 #hintbox{margin-top:30px; background:rgba(247,202,201,.42);
   border:1px solid rgba(201,168,106,.6); border-radius:16px; padding:20px 18px 18px;
@@ -99,21 +99,21 @@ main{flex:1; display:flex; flex-direction:column; align-items:center; width:100%
 #hintbox:hover, #hintbox:active{
   transform:translateY(-5px) scale(1.025);
   box-shadow:0 14px 36px rgba(216,167,177,.5), 0 0 0 1px rgba(201,168,106,.35)}
-#info #hintbox .subttl{font-size:15px; font-weight:600; letter-spacing:.3em; color:var(--gold); margin:0}
+#info #hintbox .subttl{font-size:16px; font-weight:600; letter-spacing:.3em; color:var(--goldtext); margin:0}
 #hintbox .chips{margin-top:14px}
-.chips.subs span{background:#fff; border:1px solid rgba(201,168,106,.5); font-size:13px;
+.chips.subs span{background:#fff; border:1px solid rgba(156,116,52,.55); font-size:14px; font-weight:500;
   padding:7px 15px; box-shadow:0 2px 6px rgba(93,78,96,.08)}
-#info .msg{font-size:14.5px; line-height:2.15; text-align:left; margin-top:22px; white-space:pre-line}
+#info .msg{font-size:16px; font-weight:500; line-height:2.1; text-align:left; margin-top:22px; white-space:pre-line}
 #info .subttl{font-size:12px; letter-spacing:.25em; color:var(--gold); margin-top:26px}
-#again{display:inline-block; margin:30px 0 6px; font-size:13px; letter-spacing:.1em;
+#again{display:inline-block; margin:30px 0 6px; font-size:14px; font-weight:500; letter-spacing:.1em;
   color:var(--ink); cursor:pointer; background:none; border:none; font-family:inherit;
   border-bottom:1px solid var(--gold); padding-bottom:2px}
-#home{display:block; margin:18px auto 10px; font-family:inherit; font-size:13.5px;
+#home{display:block; margin:18px auto 10px; font-family:inherit; font-size:14.5px; font-weight:500;
   letter-spacing:.12em; color:var(--ink); cursor:pointer;
   background:#fff; border:1px solid rgba(201,168,106,.55); border-radius:999px;
   padding:11px 34px; transition:all .3s}
 #home:hover{background:linear-gradient(135deg,var(--rose),var(--lav)); color:#fff; border-color:transparent}
-footer{text-align:center; font-size:11px; line-height:1.9; color:#A79AAB; padding:26px 24px 30px}
+footer{text-align:center; font-size:12.5px; line-height:1.9; color:#8E8194; padding:26px 24px 30px}
 @media (max-width:480px){
   #intro h1{font-size:28px}
   #info h2{font-size:23px}

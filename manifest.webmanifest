@@ -1,6 +1,6 @@
 {
  "name": "みちよオラクル 今日の１枚",
- "short_name": "今日の１枚",
+ "short_name": "みちよオラクル",
  "display": "standalone",
  "start_url": ".",
  "background_color": "#FDF9F6",
