@@ -108,7 +108,13 @@ main{flex:1; display:flex; flex-direction:column; align-items:center; width:100%
 #again{display:inline-block; margin:30px 0 6px; font-size:14px; font-weight:500; letter-spacing:.1em;
   color:var(--ink); cursor:pointer; background:none; border:none; font-family:inherit;
   border-bottom:1px solid var(--gold); padding-bottom:2px}
-#home{display:block; margin:18px auto 10px; font-family:inherit; font-size:14.5px; font-weight:500;
+#share{display:block; margin:22px auto 0; font-family:inherit; font-size:14.5px; font-weight:500;
+  letter-spacing:.12em; color:#fff; cursor:pointer;
+  background:linear-gradient(135deg,var(--rose),var(--lav));
+  border:none; border-radius:999px; padding:12px 36px;
+  box-shadow:0 5px 18px rgba(216,167,177,.4); transition:transform .25s, box-shadow .25s}
+#share:hover{transform:translateY(-2px); box-shadow:0 9px 24px rgba(197,180,227,.5)}
+#home{display:block; margin:14px auto 10px; font-family:inherit; font-size:14.5px; font-weight:500;
   letter-spacing:.12em; color:var(--ink); cursor:pointer;
   background:#fff; border:1px solid rgba(201,168,106,.55); border-radius:999px;
   padding:11px 34px; transition:all .3s}
@@ -117,6 +123,10 @@ footer{text-align:center; font-size:12.5px; line-height:1.9; color:#8E8194; padd
 @media (max-width:480px){
   #intro h1{font-size:28px}
   #info h2{font-size:23px}
+  .chips span{font-size:15px; padding:7px 15px}
+  .chips.subs span{font-size:15.5px; padding:8px 17px}
+  #info #hintbox .subttl{font-size:17.5px}
+  #hintbox{padding:22px 18px 20px}
 }
 @media (prefers-reduced-motion: reduce){
   *{transition-duration:.01s !important; animation:none !important}
@@ -164,6 +174,7 @@ footer{text-align:center; font-size:12.5px; line-height:1.9; color:#8E8194; padd
         <div class="chips subs"></div>
       </div>
       <button id="again">もう一度シャッフルする</button>
+      <button id="share">✦ このカードをシェアする</button>
       <button id="home">ホームに戻る</button>
     </div>
   </section>
@@ -298,7 +309,9 @@ function stopAndDraw(){
   setTimeout(()=> reveal(chosen), reduced ? 150 : 2150);
 }
 
+let currentCard = null;
 function reveal(c){
+  currentCard = c;
   show("#result");
   const img = $("#cardimg"); img.src = c.img; img.alt = c.jp;
   // カードサイズ(縦横比は画像に合わせる)
@@ -332,6 +345,31 @@ $("#again").onclick = ()=>{  // 同じデッキでそのままもう一度混ぜ
   show("#table-scene"); buildTable();
 };
 $("#home").onclick = ()=>{ show("#intro"); phase = "idle"; $("#hint").style.opacity = 1; };
+const SITE_URL = "https://resonancelink.github.io/michiyo_oraclecards/";
+$("#share").onclick = async ()=>{
+  const c = currentCard; if(!c) return;
+  const text = `みちよオラクル「今日の１枚」\n今日のカードは「${c.jp}」でした`;
+  try{
+    let files = null;
+    try{
+      const blob = await (await fetch(c.img)).blob();
+      const f = new File([blob], `michiyo-oracle-${String(c.no).padStart(2,"0")}.jpg`, {type: "image/jpeg"});
+      if(navigator.canShare && navigator.canShare({files: [f]})) files = [f];
+    }catch(e){}
+    if(navigator.share){
+      const data = files ? {title: "みちよオラクル", text: text, url: SITE_URL, files: files}
+                         : {title: "みちよオラクル", text: text, url: SITE_URL};
+      await navigator.share(data);
+      return;
+    }
+  }catch(e){ if(e && e.name === "AbortError") return; }
+  try{
+    await navigator.clipboard.writeText(text + "\n" + SITE_URL);
+    const b = $("#share"), t = b.textContent;
+    b.textContent = "コピーしました ✓";
+    setTimeout(()=>{ b.textContent = t; }, 1800);
+  }catch(e){}
+};
 window.addEventListener("resize", ()=>{ if(phase === "shuffling"){ /* サイズ変更時はそのまま */ } });
 </script>
 </body>
